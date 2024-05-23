@@ -15,7 +15,7 @@
         android:theme="@style/Theme.ProjectLearnify"
         tools:targetApi="31">
         <activity
-            android:name=".CheckboxActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
         <activity android:name=".UploadVideoActivity"/>
         <activity android:name=".ConfirmationActivity"/>
     </application>

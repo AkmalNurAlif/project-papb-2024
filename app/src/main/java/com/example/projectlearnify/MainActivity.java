@@ -4,25 +4,32 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.room.Room;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
+
+import com.example.projectlearnify.Fragment.ConfirmationActivityFragment;
+import com.example.projectlearnify.Fragment.MainActivityFragment;
+import com.example.projectlearnify.Fragment.UploadVideoActivityFragment;
 import com.example.projectlearnify.database.AppDatabase;
 import com.example.projectlearnify.database.UploadFile;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final int PICK_FILE_REQUEST_CODE = 100;
-
-
-    private Button btnSubmit;
-    private View btnPilihFile;
-
     private AppDatabase db;
+    private ViewPager2 viewPager;
+    private FragmentStateAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,30 +39,58 @@ public class MainActivity extends AppCompatActivity {
         db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "upload_files_database").build();
 
-        btnPilihFile = findViewById(R.id.btnPilihFile);
-        btnSubmit = findViewById(R.id.btnSubmit);
+        viewPager = findViewById(R.id.viewPager);
 
-        btnPilihFile.setOnClickListener(new View.OnClickListener() {
+        adapter = new FragmentStateAdapter(this) {
+            @NonNull
             @Override
-            public void onClick(View v) {
-                PilihFile();
+            public Fragment createFragment(int position) {
+                switch (position) {
+                    case 0:
+                        return new ConfirmationActivityFragment();
+                    case 1:
+                        return new MainActivityFragment();
+                    case 2:
+                        return new UploadVideoActivityFragment();
+                    default:
+                        return null;
+                }
             }
-        });
 
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ConfirmationActivity.class);
-                intent.putExtra("uploadType", "video");
-                startActivity(intent);
+            public int getItemCount() {
+                return 3; // Three fragments
             }
-        });
+        };
+
+        viewPager.setAdapter(adapter);
+
+        TabLayout tabLayout = findViewById(R.id.tabLayout);
+        new TabLayoutMediator(tabLayout, viewPager,
+                (tab, position) -> {
+                    switch (position) {
+                        case 0:
+                            tab.setText("Confirmation");
+                            break;
+                        case 1:
+                            tab.setText("Main");
+                            break;
+                        case 2:
+                            tab.setText("Upload Video");
+                            break;
+                    }
+                }).attach();
     }
 
-    public void PilihFile() {
+    public void PilihFile(View view) {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("*/*"); // You can set your specific file type here
-        startActivityForResult(intent, PICK_FILE_REQUEST_CODE);
+        intent.setType("*/*");
+        try {
+            startActivityForResult(intent, PICK_FILE_REQUEST_CODE);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Error: Cannot open file picker", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void saveFileToDatabase(String filePath) {
@@ -97,4 +132,3 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
-
