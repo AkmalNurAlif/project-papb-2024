@@ -15,7 +15,14 @@
         android:theme="@style/Theme.ProjectLearnify"
         tools:targetApi="31">
         <activity
+<<<<<<< Updated upstream
             android:name=".MainActivity"
+=======
+            android:name=".login"
+            android:exported="false" />
+        <activity
+            android:name=".CheckboxActivity"
+>>>>>>> Stashed changes
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +30,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< Updated upstream
         <activity android:name=".UploadVideoActivity"/>
         <activity android:name=".ConfirmationActivity"/>
+=======
+        <activity android:name=".MainActivity" />
+        <activity android:name=".UploadVideoActivity" />
+        <activity android:name=".ConfirmationActivity" />
+>>>>>>> Stashed changes
     </application>
+
 </manifest>

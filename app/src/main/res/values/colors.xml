@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="Underline">#B5ACAC</color>
     <color name="Daftar">#FFFBF2</color>
+    <color name="grey">#C7C8CC</color>
 </resources>
