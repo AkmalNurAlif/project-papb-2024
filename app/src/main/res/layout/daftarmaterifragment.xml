@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".DaftarMapel">
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#075E53"
+        app:tabIndicatorColor="@color/white"
+        app:tabSelectedTextColor="@color/white"
+        >
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bahasa Indonesia"
+            />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bahasa Inggris"
+            />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Matematika"
+            />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Biologi"
+            />
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fisika"
+            />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kimia"
+            />
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sejarah Indonesia"
+            />
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sejarah Dunia"
+            />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sosiologi"
+            />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Geologi"
+            />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ekonomi"
+            />
+    </com.google.android.material.tabs.TabLayout>
+
+
+    <FrameLayout
+        android:id="@+id/framelayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>
