@@ -5,14 +5,12 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.example.projectlearnify.materiDatabase.Materi;
-
-import java.util.List;
+import java.util.Collection;
 
 @Dao
 public interface MateriDAO {
     @Query("SELECT * FROM materi")
-    List<Materi> getAll();
+    Collection<? extends Materi> getAll();
 
     @Insert
     void insert(Materi materi);
