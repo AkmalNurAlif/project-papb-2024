@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">ProjectLearnify</string>
+    <string-array name="isi_materi_array">
+        <item>Cerita pendek adalah bentuk narasi belaka yang memusatkan cerita dalam lingkup yang lebih singkat dibandingkan dengan novel.</item>
+        <item>Puisi adalah bentuk ekspresi sastra yang dipadukan dengan irama dan pemilihan kata yang indah.</item>
+        <item>Novel adalah karya sastra yang menggambarkan kehidupan dan konflik karakter dalam cerita yang panjang.</item>
+    </string-array>
+    <string-array name="judul_materi_array">
+        <item>Cerita Pendek</item>
+        <item>Puisi</item>
+        <item>Novel</item>
+    </string-array>
 </resources>
