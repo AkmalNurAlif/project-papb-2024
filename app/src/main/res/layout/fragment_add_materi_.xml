@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".materiFragment.AddMateri_Fragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/etNomorMateri"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:ems="10"
+            android:hint="Nomor Materi"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="@+id/parent"
+            app:layout_constraintStart_toStartOf="@+id/parent"
+            app:layout_constraintTop_toTopOf="@+id/parent" />
+
+        <EditText
+            android:id="@+id/etJudulMateri"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="Judul Materi"
+            android:inputType="text"
+            app:layout_constraintStart_toStartOf="@+id/etNomorMateri"
+            app:layout_constraintTop_toBottomOf="@+id/etNomorMateri" />
+
+        <EditText
+            android:id="@+id/etJudulVideo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="Judul Video"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="@+id/etJudulMateri"
+            app:layout_constraintStart_toStartOf="@+id/etJudulMateri"
+            app:layout_constraintTop_toBottomOf="@+id/etJudulMateri" />
+
+        <EditText
+            android:id="@+id/etDescVideo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="Deskripsi Video"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="@+id/etJudulVideo"
+            app:layout_constraintStart_toStartOf="@+id/etJudulVideo"
+            app:layout_constraintTop_toBottomOf="@+id/etJudulVideo" />
+
+        <Button
+            android:id="@+id/btSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Simpan Data"
+            app:layout_constraintEnd_toEndOf="@+id/etDescVideo"
+            app:layout_constraintStart_toStartOf="@+id/etDescVideo"
+            app:layout_constraintTop_toBottomOf="@+id/etDescVideo" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
