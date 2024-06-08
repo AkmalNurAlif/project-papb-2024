@@ -10,24 +10,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.room.Room;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
-
 
 import com.example.projectlearnify.Fragment.ConfirmationActivityFragment;
 import com.example.projectlearnify.Fragment.MainActivityFragment;
 import com.example.projectlearnify.Fragment.UploadVideoActivityFragment;
-import com.example.projectlearnify.database.AppDatabase;
 import com.example.projectlearnify.database.UploadFile;
+import com.example.projectlearnify.database.UploadFileFirebaseDao;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final int PICK_FILE_REQUEST_CODE = 100;
-    private AppDatabase db;
     private ViewPager2 viewPager;
     private FragmentStateAdapter adapter;
 
@@ -35,9 +31,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "upload_files_database").build();
 
         viewPager = findViewById(R.id.viewPager);
 
@@ -95,21 +88,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void saveFileToDatabase(String filePath) {
         try {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        UploadFile uploadFile = new UploadFile(filePath, "Default Title", "Default Description");
-                        db.uploadFileDao().insert(uploadFile);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(MainActivity.this, "Error: Failed to save file to database", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
+            new Thread(() -> {
+                try {
+                    UploadFile uploadFile = new UploadFile(filePath, "Default Title", "Default Description");
+                    UploadFileFirebaseDao.getInstance().insert(uploadFile);
+                    runOnUiThread(() -> Toast.makeText(MainActivity.this, "File saved successfully", Toast.LENGTH_SHORT).show());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    runOnUiThread(() -> Toast.makeText(MainActivity.this, "Error: Failed to save file to database", Toast.LENGTH_SHORT).show());
                 }
             }).start();
         } catch (Exception e) {
@@ -130,5 +116,4 @@ public class MainActivity extends AppCompatActivity {
             saveFileToDatabase(selectedFileUri.toString());
         }
     }
-
 }
