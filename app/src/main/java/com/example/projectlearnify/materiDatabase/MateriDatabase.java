@@ -6,8 +6,6 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.example.projectlearnify.database.AppDatabase;
-
 @Database(entities = {Materi.class}, version = 1)
 public abstract class MateriDatabase extends RoomDatabase {
     private static MateriDatabase instance;

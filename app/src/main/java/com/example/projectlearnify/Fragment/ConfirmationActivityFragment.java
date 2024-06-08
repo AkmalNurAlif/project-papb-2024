@@ -15,11 +15,11 @@ import com.example.projectlearnify.MainActivity;
 import com.example.projectlearnify.R;
 import com.example.projectlearnify.UploadVideoActivity;
 
-
 public class ConfirmationActivityFragment extends Fragment {
+
     private Button kembaliButton;
     private Button unggahLagiButton;
-    private String previousSelection;
+    private String uploadType;
 
     public ConfirmationActivityFragment() {
         // Required empty public constructor
@@ -49,14 +49,30 @@ public class ConfirmationActivityFragment extends Fragment {
         unggahLagiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent;
-                if (previousSelection.equals("video")) {
-                    intent = new Intent(requireContext(), UploadVideoActivity.class);
+                if (uploadType.equals("video")) {
+//                    uploadVideoAgain();
                 } else {
-                    intent = new Intent(requireContext(), MainActivity.class);
+//                    uploadFileAgain();
                 }
-                requireActivity().startActivity(intent);
             }
         });
     }
+
+    public void setUploadType(String uploadType) {
+        this.uploadType = uploadType;
+    }
+
+//    private void uploadFileAgain() {
+//        MainActivityFragment mainFragment = (MainActivityFragment) getParentFragmentManager().findFragmentByTag("f1");
+//        if (mainFragment != null) {
+//            mainFragment.uploadFile();
+//        }
+//    }
+
+//    private void uploadVideoAgain() {
+//        UploadVideoActivityFragment videoFragment = (UploadVideoActivityFragment) getParentFragmentManager().findFragmentByTag("f2");
+//        if (videoFragment != null) {
+//            videoFragment.uploadVideo();
+//        }
+//    }
 }

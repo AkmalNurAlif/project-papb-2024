@@ -2,26 +2,34 @@ package com.example.projectlearnify.database;
 
 import android.content.Context;
 
-import androidx.room.Database;
-import androidx.room.Room;
-import androidx.room.RoomDatabase;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-import com.example.projectlearnify.materiDatabase.MateriDAO;
+public class AppDatabase {
 
-@Database(entities = {UploadFile.class, UploadVideo.class}, version = 1)
-public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase instance;
-    public abstract UploadFileDao uploadFileDao();
-    public abstract UploadVideoDao uploadVideoDao();
+    private static final int NUMBER_OF_THREADS = 4;
+    public static final ExecutorService databaseWriteExecutor =
+            Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     public static synchronized AppDatabase getInstance(Context context) {
         if (instance == null) {
-            instance = Room.databaseBuilder(context.getApplicationContext(),
-                            AppDatabase.class, "App_database")
-                    .fallbackToDestructiveMigration()
-                    .build();
+            instance = new AppDatabase();
         }
         return instance;
     }
 
+    // Method to insert UploadFile and sync with Firebase
+    public void insertUploadFileSync(final UploadFile uploadFile) {
+        databaseWriteExecutor.execute(() -> {
+            UploadFileFirebaseDao.getInstance().insert(uploadFile);
+        });
+    }
+
+    // Method to insert UploadVideo and sync with Firebase
+    public void insertUploadVideoSync(final UploadVideo uploadVideo) {
+        databaseWriteExecutor.execute(() -> {
+            UploadVideoFirebaseDao.getInstance().insert(uploadVideo);
+        });
+    }
 }
