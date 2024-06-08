@@ -24,6 +24,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".searchDatabase.LoginActivity"/>
+        <activity android:name=".searchDatabase.ProfilPelajarActivity"/>
+        <activity android:name=".searchDatabase.ProfilPengajarActivity"/>
+        <activity android:name=".SignUpPelajarActivity"/>
         <activity android:name=".UploadVideoActivity"/>
         <activity android:name=".ConfirmationActivity"/>
     </application>
