@@ -14,9 +14,5 @@ public class Materi{
     public String noMateri;
     @ColumnInfo(name = "judul materi")
     public String titleMateri;
-    @ColumnInfo(name = "nomor video")
-    public String titleVideo;
-    @ColumnInfo(name = "deskripsi video")
-    public String descVideo;
 
 }

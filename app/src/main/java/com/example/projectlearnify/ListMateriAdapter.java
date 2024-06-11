@@ -62,8 +62,8 @@ public class ListMateriAdapter extends RecyclerView.Adapter<ListMateriAdapter.Vi
     public void onBindViewHolder(@NonNull ViewAdapter holder, int position) {
         holder.nomorMateri.setText(listmateri.get(position).noMateri);
         holder.judulMateri.setText(listmateri.get(position).titleMateri);
-        holder.judulVideo.setText(listmateri.get(position).titleVideo);
-        holder.deskripsiVid.setText(listmateri.get(position).descVideo);
+//        holder.judulVideo.setText(listmateri.get(position).titleVideo);
+//        holder.deskripsiVid.setText(listmateri.get(position).descVideo);
 
 //        if (getItemViewType(position) == 0){
 //            RowMateriModel materi = (RowMateriModel) item.get(position).getObject();
@@ -88,8 +88,8 @@ public class ListMateriAdapter extends RecyclerView.Adapter<ListMateriAdapter.Vi
             super(itemView);
             nomorMateri = itemView.findViewById(R.id.tv_materi);
             judulMateri = itemView.findViewById(R.id.tv_judulMateri);
-            judulVideo = itemView.findViewById(R.id.tvJudulVid);
-            deskripsiVid = itemView.findViewById(R.id.tvDeskripsiVid);
+//            judulVideo = itemView.findViewById(R.id.tvJudulVid);
+//            deskripsiVid = itemView.findViewById(R.id.tvDeskripsiVid);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

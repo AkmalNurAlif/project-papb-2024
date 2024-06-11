@@ -13,14 +13,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.projectlearnify.ListMateriAdapter;
 import com.example.projectlearnify.R;
 import com.example.projectlearnify.materiDatabase.Materi;
 import com.example.projectlearnify.materiDatabase.MateriDatabase;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 import java.util.ArrayList;
+import java.util.EventListener;
 import java.util.List;
 
 /**
@@ -39,9 +46,10 @@ public class ListMateri_Fragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private RecyclerView recyclerView;
-    private MateriDatabase materiDatabase;
-    private ListMateriAdapter listMateriAdapter;
-    private static List<Materi> listmateri = new ArrayList<>();
+    //private MateriDatabase materiDatabase;
+    private DatabaseReference firedatabase;
+    private Materi_Adapter materiAdapter;
+    private static List<RowMateri_Model> listmateri= new ArrayList<>();
     private AlertDialog.Builder dialog;
     private AlertDialog.Builder delConfirmdialog;
 
@@ -81,6 +89,7 @@ public class ListMateri_Fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_list_materi_, container, false);
+
     }
 
 
@@ -89,39 +98,63 @@ public class ListMateri_Fragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = view.findViewById(R.id.recyclerView);
-
-        materiDatabase = MateriDatabase.getInstance(requireContext());
-        listmateri.clear();
-        listmateri.addAll(materiDatabase.materiDao().getAll());
-        //listAdapter.notifyDataSetChanged();
-
-        listMateriAdapter = new ListMateriAdapter(requireContext(), listmateri);
-        listMateriAdapter.setDialog(new ListMateriAdapter.Dialog(){
-            @Override
-            public void onClick(int position) {
-                showOptionDialog(position);
-            }
-        });
-
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(
                 requireContext(), RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(listMateriAdapter);
+
+//        materiDatabase = MateriDatabase.getInstance(requireContext());
+//        listmateri.clear();
+//        listmateri.addAll(materiDatabase.materiDao().getAll());
+        //listAdapter.notifyDataSetChanged();
+
+        //listMateriAdapter = new ListMateriAdapter(requireContext(), listmateri);
+
+//        listMateriAdapter.setDialog(new ListMateriAdapter.Dialog(){
+//            @Override
+//            public void onClick(int position) {
+//                showOptionDialog(position);
+//            }
+//        });
+
+        firedatabase = FirebaseDatabase.getInstance().getReference("uploads");
+        materiAdapter = new Materi_Adapter(requireContext(), listmateri);
 
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        listmateri.clear();
-        MateriDatabase db = MateriDatabase.getInstance(getContext());
-        listmateri.addAll(db.materiDao().getAll());
+//        listmateri.clear();
+//        MateriDatabase db = MateriDatabase.getInstance(getContext());
+//        listmateri.addAll(db.materiDao().getAll());
         //RefreshList();
-        listMateriAdapter.notifyDataSetChanged();
+        fetchFiredatabase();
+        materiAdapter.notifyDataSetChanged();
+    }
+
+    private void fetchFiredatabase(){
+        firedatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                listmateri.clear();
+                for (DataSnapshot datasnapshot : snapshot.getChildren()){
+                    RowMateri_Model materi = (RowMateri_Model) snapshot.getValue();
+                    if (materi != null) {
+                        listmateri.add(materi);
+                    }
+                }
+                materiAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "Failed to load data", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void showOptionDialog(final int position){
-        final CharSequence[] dialogItem = {"Hapus", "Edit"};
+        final CharSequence[] dialogItem = {"Hapus"};
         if (dialog == null){
             dialog = new AlertDialog.Builder(requireContext());
         }
@@ -131,12 +164,14 @@ public class ListMateri_Fragment extends Fragment {
             public void onClick(DialogInterface dialogInterface, int i) {
                 switch(i){
                     case 0:
-                        Materi materi = listmateri.get(position);
-                        MateriDatabase db = MateriDatabase.getInstance(requireContext());
-                        db.materiDao().delete(materi);
+                        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Uploads");
+//                        FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+//                        Materi materi = materiAdapter.get(position);
+//                        MateriDatabase db = MateriDatabase.getInstance(requireContext());
+//                        db.materiDao().delete(materi);
 
                         listmateri.remove(position);
-                        listMateriAdapter.notifyDataSetChanged();
+                        materiAdapter.notifyDataSetChanged();
                         //finish();
                         //onStart();
                         break;

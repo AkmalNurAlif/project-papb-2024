@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.projectlearnify.Fragment.UploadVideoActivityFragment;
 import com.example.projectlearnify.databinding.MainMateriBinding;
 import com.example.projectlearnify.materiFragment.AddMateri_Fragment;
 import com.example.projectlearnify.materiFragment.Desc_Fragment;
@@ -44,7 +45,7 @@ public class MainMateriActivity extends AppCompatActivity {
         btAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                replaceFragment(new AddMateri_Fragment());
+                replaceFragment(new UploadVideoActivityFragment());
             }
         });
 
