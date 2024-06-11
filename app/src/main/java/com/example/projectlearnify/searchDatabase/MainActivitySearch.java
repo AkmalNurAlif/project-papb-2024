@@ -13,8 +13,10 @@ public class MainActivitySearch extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_search);
         replaceFragment(new MateriFragment());
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new MateriFragment()).commit();
     }
 
     private void replaceFragment(MateriFragment materiFragment) {

@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-class KontakDAO extends RecyclerView.Adapter<KontakDAO.ViewHolder> {
+class MateriDAO extends RecyclerView.Adapter<MateriDAO.ViewHolder> {
     private final Context context;
     private final List<Kontak> kontaks;
 
-    public KontakDAO(Context context, List<Kontak> kontaks) {
+    public MateriDAO(Context context, List<Kontak> kontaks) {
         this.context = context;
         this.kontaks = kontaks;
     }

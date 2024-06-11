@@ -11,7 +11,7 @@ import com.example.projectlearnify.R;
 import java.util.ArrayList;
 import java.util.List;
 
-class daftarmateri extends AppCompatActivity {
+class DaftarMateri extends AppCompatActivity {
     private List<Kontak> data;
     private RecyclerView rvKontak;
 
@@ -42,7 +42,7 @@ class daftarmateri extends AppCompatActivity {
 
         KontakMateri KA = new KontakMateri();
 
-        RecyclerView.LayoutManager lm = new LinearLayoutManager(daftarmateri.this, LinearLayoutManager.VERTICAL, false);
+        RecyclerView.LayoutManager lm = new LinearLayoutManager(DaftarMateri.this, LinearLayoutManager.VERTICAL, false);
 
         this.rvKontak.setLayoutManager(lm);
         this.rvKontak.setAdapter(KA);

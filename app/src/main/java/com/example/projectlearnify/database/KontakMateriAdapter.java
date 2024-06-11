@@ -17,14 +17,14 @@ import com.example.projectlearnify.database.SelectListener;
 
 import java.util.List;
 
-class KontakAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+class KontakMateriAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private SelectListener listener;
 
 
     private final Context context;
     private final List<Kontak> kontaks;
 
-    public KontakAdapter(Context context, List<Kontak> kontaks){
+    public KontakMateriAdapter(Context context, List<Kontak> kontaks){
         this.context = context;
         this.kontaks = kontaks;
     }

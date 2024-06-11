@@ -17,7 +17,7 @@ import com.example.projectlearnify.MateriFragment3;
 import com.example.projectlearnify.R;
 import com.google.android.material.tabs.TabLayout;
 
-public class MainActivity extends AppCompatActivity {
+public class DaftarMateriFragment extends AppCompatActivity {
 
     FrameLayout frameLayout;
     TabLayout tabLayout;
@@ -36,10 +36,10 @@ public class MainActivity extends AppCompatActivity {
         frameLayout = findViewById(R.id.framelayout);
         tabLayout = findViewById(R.id.tablayout);
 
-        int commit;
-        commit = getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new materifragment1())
-                .addToBackStack(null)
-                .commit();
+//        int commit;
+//        commit = getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new materifragment1())
+//                .addToBackStack(null)
+//                .commit();
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -61,9 +61,9 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 assert fragment != null;
-                int commit1 = getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, fragment)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit();
+//                int commit1 = getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, fragment)
+//                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//                        .commit();
             }
 
             @Override

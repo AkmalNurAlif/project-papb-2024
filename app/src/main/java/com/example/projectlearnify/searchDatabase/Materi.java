@@ -1,21 +1,23 @@
 package com.example.projectlearnify.searchDatabase;
 
 public class Materi {
+    private String judul;
+    private String isi;
 
-    public String Judul;
+    public Materi() {
+        // Diperlukan untuk Firebase
+    }
 
-    public String Isi;
-
-    public Materi(String judul, String isi){
-        this.Judul = judul;
-        this.Isi = isi;
+    public Materi(String judul, String isi) {
+        this.judul = judul;
+        this.isi = isi;
     }
 
     public String getJudul() {
-        return Judul;
+        return judul;
     }
 
     public String getIsi() {
-        return Isi;
+        return isi;
     }
 }
